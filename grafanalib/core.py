@@ -2294,6 +2294,7 @@ class TimeSeries(Panel):
         single (Default), multi, none
     :param tooltipSort: To sort the tooltips
         none (Default), asc, desc
+    :param tooltipHideZeros: Controls the hideZeros of tooltips
     :param unit: units
     :param thresholdsStyleMode: thresholds style mode off (Default), area, line, line+area
     :param valueMin: Minimum value for Panel
@@ -2352,6 +2353,7 @@ class TimeSeries(Panel):
     stacking = attr.ib(factory=dict, validator=instance_of(dict))
     tooltipMode = attr.ib(default='single', validator=instance_of(str))
     tooltipSort = attr.ib(default='none', validator=instance_of(str))
+    tooltipHideZeros = attr.ib(default=False, validator=instance_of(bool))
     unit = attr.ib(default='', validator=instance_of(str))
     thresholdsStyleMode = attr.ib(default='off', validator=instance_of(str))
 
@@ -2413,7 +2415,8 @@ class TimeSeries(Panel):
                     },
                     'tooltip': {
                         'mode': self.tooltipMode,
-                        'sort': self.tooltipSort
+                        'sort': self.tooltipSort,
+                        'hideZeros': self.tooltipHideZeros
                     }
                 },
                 'type': TIMESERIES_TYPE,
@@ -3864,6 +3867,7 @@ class PieChartv2(Panel):
         single (Default), multi, none
     :param tooltipSort: To sort the tooltips
         none (Default), asc, desc
+    :param tooltipHideZeros: Controls the hideZeros of tooltips
     :param unit: units
     """
 
@@ -3880,6 +3884,7 @@ class PieChartv2(Panel):
     reduceOptionsValues = attr.ib(default=False, validator=instance_of(bool))
     tooltipMode = attr.ib(default='single', validator=instance_of(str))
     tooltipSort = attr.ib(default='none', validator=instance_of(str))
+    tooltipHideZeros = attr.ib(default=False, validator=instance_of(bool))
     unit = attr.ib(default='', validator=instance_of(str))
 
     def to_json_data(self):
@@ -3905,7 +3910,8 @@ class PieChartv2(Panel):
                     'pieType': self.pieType,
                     'tooltip': {
                         'mode': self.tooltipMode,
-                        'sort': self.tooltipSort
+                        'sort': self.tooltipSort,
+                        'hideZeros': self.tooltipHideZeros
                     },
                     'legend': {
                         'displayMode': self.legendDisplayMode,
@@ -4456,6 +4462,7 @@ class BarChart(Panel):
     :param barRadius: Controls the radius of the bars
     :param toolTipMode: Controls the style of tooltips
     :param toolTipSort: Controls the sort order of tooltips, when toolTipMode is 'All'
+    :param tooltipHideZeros: Controls the hideZeros of tooltips
     :param showLegend: Controls the visibility of legends
     :param legendDisplayMode: Controls the style of legends, if they are shown.
     :param legendPlacement: Controls the placement of legends, if they are shown
@@ -4488,6 +4495,7 @@ class BarChart(Panel):
     barRadius = attr.ib(default=0.0, validator=instance_of(float))
     tooltipMode = attr.ib(default='single', validator=instance_of(str))
     tooltipSort = attr.ib(default='none', validator=instance_of(str))
+    tooltipHideZeros = attr.ib(default=False, validator=instance_of(bool))
     showLegend = attr.ib(default=True, validator=instance_of(bool))
     legendDisplayMode = attr.ib(default='list', validator=instance_of(str))
     legendPlacement = attr.ib(default='bottom', validator=instance_of(str))
@@ -4536,7 +4544,8 @@ class BarChart(Panel):
                     'barRadius': self.barRadius,
                     'tooltip': {
                         'mode': self.tooltipMode,
-                        'sort': self.tooltipSort
+                        'sort': self.tooltipSort,
+                        'hideZeros': self.tooltipHideZeros
                     },
                     'legend': {
                         'showLegend': self.showLegend,
